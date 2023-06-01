@@ -1,0 +1,89 @@
+{
+	"info": {
+		"_postman_id": "316acc72-56c6-452a-b915-d9508c655f2c",
+		"name": "tuplaus",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21825070"
+	},
+	"item": [
+		{
+			"name": "debugAddPlayer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"player\":{\"full_name\":\"Jaakko Jaakonpoika\",\"balance\":100}}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:7800/api/debug/addPlayer",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "7800",
+					"path": [
+						"api",
+						"debug",
+						"addPlayer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "debugGetEverything",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:7800/api/debug/everything",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "7800",
+					"path": [
+						"api",
+						"debug",
+						"everything"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "postGame",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"playerId\":1,\"bet\":1,\"choice\":\"pieni\"}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:7800/api/tuplaus",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "7800",
+					"path": [
+						"api",
+						"tuplaus"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

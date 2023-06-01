@@ -1,0 +1,4 @@
+aja pelimoottori komennolla "docker compose up"
+aja testit menemällä containeriin "tuplaus-api" ja ajamalla komento "deno test --allow-all"
+tietokannan pitää olla tyhjä ennen testien ajamista
+manuaalista testausta varten voit käyttää postman-collectionia tiedostossa tuplaus.postman_collection.json

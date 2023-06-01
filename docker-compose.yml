@@ -1,0 +1,55 @@
+version: "0.1"
+
+volumes:
+  astro_node_modules:
+
+services: 
+  database:
+    container_name: database-server
+    image: postgres:14.1
+    restart: "no"
+    env_file:
+        - project.env
+
+  tuplaus-api:
+    build: tuplaus-api
+    image: tuplaus-api
+    restart: "no"
+    volumes:
+      - ./tuplaus-api/:/app
+      - ./app-cache/:/app-cache
+    expose:
+      - 7777
+    depends_on:
+      - database
+      - flyway
+      # - redis
+    env_file:
+      - project.env
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - tuplaus-api
+    ports:
+      - 7800:7800
+
+  flyway:
+    image: flyway/flyway:9.11.0-alpine
+    depends_on:
+      - database
+    volumes:
+      - ./flyway/sql/:/flyway/sql
+    command: -connectRetries=60 -baselineOnMigrate=true migrate
+    env_file:
+      - project.env
+  # not sure this is needed
+  # redis:
+  #   image: redis:latest
+  #   command: redis-server /usr/local/etc/redis/redis.conf
+  #   volumes:
+  #     - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
+  #   expose:
+  #     - 6379
